@@ -11,10 +11,7 @@ CREATE PROCEDURE [dbo].[pEmpleadosRoles]
      @horasJornada decimal(12,2) = NULL,
      @diasPorSemana int = NULL,
      @montoAdicionalPorEntrega decimal(12,2) = NULL,
-     @montoBonoPorHora decimal(12,2) = NULL,
-     @borradorbit bit= null,
-     @fechaCrea datetime= null,
-     @ultimaModificacion datetime= null
+     @montoBonoPorHora decimal(12,2) = NULL
 AS
 BEGIN
      SET NOCOUNT ON;
@@ -28,16 +25,14 @@ BEGIN
           ,[horasJornada]
           ,[diasPorSemana]
           ,[montoAdicionalPorEntrega]
-          ,[montoBonoPorHora]
-          ,[fechaCrea])
+          ,[montoBonoPorHora])
       VALUES
           (@nombre
           ,@sueldoBase
           ,@horasJornada
           ,@diasPorSemana
           ,@montoAdicionalPorEntrega
-          ,@montoBonoPorHora
-          ,GETDATE())
+          ,@montoBonoPorHora)
       select @@identity
      END
      /*:::::::::::::::: READ ALL [tblEmpleadosRoles]:::::::::::::::::::::::::*/
@@ -50,9 +45,7 @@ BEGIN
           ,isnull(diasPorSemana,0) as diasPorSemana
           ,isnull(montoAdicionalPorEntrega,'') as montoAdicionalPorEntrega
           ,isnull(montoBonoPorHora,'') as montoBonoPorHora
-          ,isnull(ultimaModificacion,0) as ultimaModificacion
       FROM [dbo].[tblEmpleadosRoles]
-      where borradorbit is null
      END
      /*:::::::::::::::: READ ONE [tblEmpleadosRoles]:::::::::::::::::::::::::*/
      IF @cmd=3
@@ -64,7 +57,6 @@ BEGIN
           ,isnull(diasPorSemana,0) as diasPorSemana
           ,isnull(montoAdicionalPorEntrega,'') as montoAdicionalPorEntrega
           ,isnull(montoBonoPorHora,'') as montoBonoPorHora
-          ,isnull(ultimaModificacion,0) as ultimaModificacion
       FROM [dbo].[tblEmpleadosRoles]
       where id = @id
      END
@@ -72,8 +64,7 @@ BEGIN
      IF @cmd=4
      BEGIN 
       UPDATE [dbo].[tblEmpleadosRoles] SET
-           [ultimaModificacion] = getdate()
-          ,[nombre] = @nombre
+           [nombre] = @nombre
           ,[sueldoBase] = @sueldoBase
           ,[horasJornada] = @horasJornada
           ,[diasPorSemana] = @diasPorSemana
@@ -84,10 +75,7 @@ BEGIN
      END     /*:::::::::::::::: DELETE ONE [tblEmpleadosRoles]:::::::::::::::::::::::::*/
      IF @cmd=5
      BEGIN 
-      UPDATE [dbo].[tblEmpleadosRoles] SET
-           [ultimaModificacion] = getdate()
-          ,[borradorbit] = 1
-      FROM [dbo].[tblEmpleadosRoles]
+      delete[dbo].[tblEmpleadosRoles]
       where id = @id
      END
 /*:::::::::::::::: END CRUD [tblEmpleadosRoles]:::::::::::::::::::::::::*/

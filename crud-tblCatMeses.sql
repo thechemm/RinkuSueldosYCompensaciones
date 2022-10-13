@@ -6,10 +6,7 @@ CREATE PROCEDURE [dbo].[ptblCatMeses]
 -- Add the parameters for the stored procedure here
      @cmd int = 0,
      @id int = 0,
-     @nombre varchar(200) = NULL,
-     @borradorbit bit= null,
-     @fechaCrea datetime= null,
-     @ultimaModificacion datetime= null
+     @nombre varchar(200) = NULL
 AS
 BEGIN
      SET NOCOUNT ON;
@@ -18,11 +15,9 @@ BEGIN
      IF @cmd=1
      BEGIN
       INSERT INTO [dbo].[tbltblCatMeses]
-          ([nombre]
-          ,[fechaCrea])
+          ([nombre])
       VALUES
-          (@nombre
-          ,GETDATE())
+          (@nombre)
       select @@identity
      END
      /*:::::::::::::::: READ ALL [tbltblCatMeses]:::::::::::::::::::::::::*/
@@ -30,16 +25,13 @@ BEGIN
       BEGIN 
       SELECT [id]
           ,isnull(nombre,'') as nombre
-          ,isnull(ultimaModificacion,0) as ultimaModificacion
       FROM [dbo].[tbltblCatMeses]
-      where borradorbit is null
      END
      /*:::::::::::::::: READ ONE [tbltblCatMeses]:::::::::::::::::::::::::*/
      IF @cmd=3
      BEGIN 
       SELECT [id]
           ,isnull(nombre,'') as nombre
-          ,isnull(ultimaModificacion,0) as ultimaModificacion
       FROM [dbo].[tbltblCatMeses]
       where id = @id
      END
@@ -47,17 +39,13 @@ BEGIN
      IF @cmd=4
      BEGIN 
       UPDATE [dbo].[tbltblCatMeses] SET
-           [ultimaModificacion] = getdate()
-          ,[nombre] = @nombre
+          [nombre] = @nombre
       FROM [dbo].[tbltblCatMeses]
       where id = @id
      END     /*:::::::::::::::: DELETE ONE [tbltblCatMeses]:::::::::::::::::::::::::*/
      IF @cmd=5
      BEGIN 
-      UPDATE [dbo].[tbltblCatMeses] SET
-           [ultimaModificacion] = getdate()
-          ,[borradorbit] = 1
-      FROM [dbo].[tbltblCatMeses]
+     delete [dbo].[tbltblCatMeses]
       where id = @id
      END
 /*:::::::::::::::: END CRUD [tbltblCatMeses]:::::::::::::::::::::::::*/

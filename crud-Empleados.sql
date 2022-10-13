@@ -3,16 +3,13 @@ SET ANSI_NULLS ON
 Go
 SET QUOTED_IDENTIFIER ON
 GO
-ALTER PROCEDURE [dbo].[pEmpleados]
+create PROCEDURE [dbo].[pEmpleados]
 -- Add the parameters for the stored procedure here
      @cmd int = 0,
      @id int = 0,
      @rolId int = NULL,
      @numero varchar(200) = NULL,
-     @nombre varchar(200) = NULL,
-     @borradorbit bit= null,
-     @fechaCrea datetime= null,
-     @ultimaModificacion datetime= null
+     @nombre varchar(200) = NULL
 AS
 BEGIN
      SET NOCOUNT ON;
@@ -23,13 +20,11 @@ BEGIN
       INSERT INTO [dbo].[tblEmpleados]
           ([rolId]
           ,[numero]
-          ,[nombre]
-          ,[fechaCrea])
+          ,[nombre])
       VALUES
           (@rolId
           ,@numero
-          ,@nombre
-          ,GETDATE())
+          ,@nombre)
       select @@identity
      END
      /*:::::::::::::::: READ ALL [tblEmpleados]:::::::::::::::::::::::::*/
@@ -39,11 +34,7 @@ BEGIN
           ,isnull(rolId,0) as rolId
           ,isnull(numero,'') as numero
           ,isnull(nombre,'') as nombre
-          ,isnull(borradorbit,0) as borradorbit
-          ,isnull(fechaCrea,0) as fechaCrea
-          ,isnull(ultimaModificacion,0) as ultimaModificacion
       FROM [dbo].[tblEmpleados]
-      where borradorbit is null
      END
      /*:::::::::::::::: READ ONE [tblEmpleados]:::::::::::::::::::::::::*/
      IF @cmd=3
@@ -52,9 +43,6 @@ BEGIN
           ,isnull(rolId,0) as rolId
           ,isnull(numero,'') as numero
           ,isnull(nombre,'') as nombre
-          ,isnull(borradorbit,0) as borradorbit
-          ,isnull(fechaCrea,0) as fechaCrea
-          ,isnull(ultimaModificacion,0) as ultimaModificacion
       FROM [dbo].[tblEmpleados]
       where id = @id
      END
@@ -62,8 +50,7 @@ BEGIN
      IF @cmd=4
      BEGIN 
       UPDATE [dbo].[tblEmpleados] SET
-           [ultimaModificacion] = getdate()
-          ,[rolId] = @rolId
+           [rolId] = @rolId
           ,[numero] = @numero
           ,[nombre] = @nombre
       FROM [dbo].[tblEmpleados]
@@ -72,10 +59,7 @@ BEGIN
      /*:::::::::::::::: DELETE ONE [tblEmpleados]:::::::::::::::::::::::::*/
      IF @cmd=5
      BEGIN 
-      UPDATE [dbo].[tblEmpleados] SET
-           [ultimaModificacion] = getdate()
-          ,[borradorbit] = 1
-      FROM [dbo].[tblEmpleados]
+      Delete tblEmpleados 
       where id = @id
      END
     /*:::::::::::::::: END CRUD [tblEmpleados]:::::::::::::::::::::::::*/

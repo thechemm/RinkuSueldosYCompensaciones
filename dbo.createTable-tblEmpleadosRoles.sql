@@ -12,10 +12,7 @@ CREATE TABLE [dbo].[tblEmpleadosRoles](
      [horasJornada] [decimal](12,2) NULL  ,
      [diasPorSemana] [int] NULL  ,
      [montoAdicionalPorEntrega] [decimal](12,2) NULL  ,
-     [montoBonoPorHora] [decimal](12,2) NULL  ,
-     [borradorbit] [bit] NULL,
-     [fechaCrea] [datetime] NULL,
-     [ultimaModificacion] [datetime] NULL,
+     [montoBonoPorHora] [decimal](12,2) NULL  
 CONSTRAINT [PK_tblEmpleadosRoles] PRIMARY KEY CLUSTERED (
 [id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]

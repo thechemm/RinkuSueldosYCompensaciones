@@ -8,10 +8,7 @@ CREATE PROCEDURE [dbo].[pRetenciones]
      @id int = 0,
      @porcentaje decimal(4,2) = NULL,
      @montoMinimo decimal(12,2) = NULL,
-     @montoMaximo decimal(12,2) = NULL,
-     @borradorbit bit= null,
-     @fechaCrea datetime= null,
-     @ultimaModificacion datetime= null
+     @montoMaximo decimal(12,2) = NULL
 AS
 BEGIN
      SET NOCOUNT ON;
@@ -22,13 +19,11 @@ BEGIN
       INSERT INTO [dbo].[tblRetenciones]
           ([porcentaje]
           ,[montoMinimo]
-          ,[montoMaximo]
-          ,[fechaCrea])
+          ,[montoMaximo])
       VALUES
           (@porcentaje
           ,@montoMinimo
-          ,@montoMaximo
-          ,GETDATE())
+          ,@montoMaximo)
       select @@identity
      END
      /*:::::::::::::::: READ ALL [tblRetenciones]:::::::::::::::::::::::::*/
@@ -38,9 +33,7 @@ BEGIN
           ,isnull(porcentaje,'') as porcentaje
           ,isnull(montoMinimo,'') as montoMinimo
           ,isnull(montoMaximo,'') as montoMaximo
-          ,isnull(ultimaModificacion,0) as ultimaModificacion
       FROM [dbo].[tblRetenciones]
-      where borradorbit is null
      END
      /*:::::::::::::::: READ ONE [tblRetenciones]:::::::::::::::::::::::::*/
      IF @cmd=3
@@ -49,7 +42,6 @@ BEGIN
           ,isnull(porcentaje,'') as porcentaje
           ,isnull(montoMinimo,'') as montoMinimo
           ,isnull(montoMaximo,'') as montoMaximo
-          ,isnull(ultimaModificacion,0) as ultimaModificacion
       FROM [dbo].[tblRetenciones]
       where id = @id
      END
@@ -57,8 +49,7 @@ BEGIN
      IF @cmd=4
      BEGIN 
       UPDATE [dbo].[tblRetenciones] SET
-           [ultimaModificacion] = getdate()
-          ,[porcentaje] = @porcentaje
+           [porcentaje] = @porcentaje
           ,[montoMinimo] = @montoMinimo
           ,[montoMaximo] = @montoMaximo
       FROM [dbo].[tblRetenciones]
@@ -66,10 +57,7 @@ BEGIN
      END     /*:::::::::::::::: DELETE ONE [tblRetenciones]:::::::::::::::::::::::::*/
      IF @cmd=5
      BEGIN 
-      UPDATE [dbo].[tblRetenciones] SET
-           [ultimaModificacion] = getdate()
-          ,[borradorbit] = 1
-      FROM [dbo].[tblRetenciones]
+     delete [dbo].[tblRetenciones]
       where id = @id
      END
 /*:::::::::::::::: END CRUD [tblRetenciones]:::::::::::::::::::::::::*/

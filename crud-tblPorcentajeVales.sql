@@ -6,10 +6,7 @@ CREATE PROCEDURE [dbo].[ptblPorcentajeVales]
 -- Add the parameters for the stored procedure here
      @cmd int = 0,
      @id int = 0,
-     @porcentaje decimal(12,2) = NULL,
-     @borradorbit bit= null,
-     @fechaCrea datetime= null,
-     @ultimaModificacion datetime= null
+     @porcentaje decimal(12,2) = NULL
 AS
 BEGIN
      SET NOCOUNT ON;
@@ -18,11 +15,9 @@ BEGIN
      IF @cmd=1
      BEGIN
       INSERT INTO [dbo].[tbltblPorcentajeVales]
-          ([porcentaje]
-          ,[fechaCrea])
+          ([porcentaje])
       VALUES
-          (@porcentaje
-          ,GETDATE())
+          (@porcentaje)
       select @@identity
      END
      /*:::::::::::::::: READ ALL [tbltblPorcentajeVales]:::::::::::::::::::::::::*/
@@ -30,16 +25,13 @@ BEGIN
       BEGIN 
       SELECT [id]
           ,isnull(porcentaje,'') as porcentaje
-          ,isnull(ultimaModificacion,0) as ultimaModificacion
       FROM [dbo].[tbltblPorcentajeVales]
-      where borradorbit is null
      END
      /*:::::::::::::::: READ ONE [tbltblPorcentajeVales]:::::::::::::::::::::::::*/
      IF @cmd=3
      BEGIN 
       SELECT [id]
           ,isnull(porcentaje,'') as porcentaje
-          ,isnull(ultimaModificacion,0) as ultimaModificacion
       FROM [dbo].[tbltblPorcentajeVales]
       where id = @id
      END
@@ -47,17 +39,13 @@ BEGIN
      IF @cmd=4
      BEGIN 
       UPDATE [dbo].[tbltblPorcentajeVales] SET
-           [ultimaModificacion] = getdate()
-          ,[porcentaje] = @porcentaje
+           [porcentaje] = @porcentaje
       FROM [dbo].[tbltblPorcentajeVales]
       where id = @id
      END     /*:::::::::::::::: DELETE ONE [tbltblPorcentajeVales]:::::::::::::::::::::::::*/
      IF @cmd=5
      BEGIN 
-      UPDATE [dbo].[tbltblPorcentajeVales] SET
-           [ultimaModificacion] = getdate()
-          ,[borradorbit] = 1
-      FROM [dbo].[tbltblPorcentajeVales]
+      delete [dbo].[tbltblPorcentajeVales]
       where id = @id
      END
 /*:::::::::::::::: END CRUD [tbltblPorcentajeVales]:::::::::::::::::::::::::*/
