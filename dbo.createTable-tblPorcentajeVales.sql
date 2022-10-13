@@ -5,7 +5,7 @@ SET ANSI_NULLS ON
 Go
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[tbltblPorcentajeVales](
+CREATE TABLE [dbo].[tblPorcentajeVales](
      [id] [int] IDENTITY(1,1) NOT NULL,
      [porcentaje] [decimal](12,2) NULL  
 CONSTRAINT [PK_tbltblPorcentajeVales] PRIMARY KEY CLUSTERED (

@@ -5,7 +5,7 @@ SET ANSI_NULLS ON
 Go
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[tbltblCatMeses](
+CREATE TABLE [dbo].[tblCatMeses](
      [id] [int] IDENTITY(1,1) NOT NULL,
      [nombre] [varchar](200) NULL 
 CONSTRAINT [PK_tbltblCatMeses] PRIMARY KEY CLUSTERED (

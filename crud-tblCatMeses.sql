@@ -2,7 +2,7 @@ SET ANSI_NULLS ON
 Go
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[ptblCatMeses]
+CREATE PROCEDURE [dbo].[pCatMeses]
 -- Add the parameters for the stored procedure here
      @cmd int = 0,
      @id int = 0,
@@ -10,45 +10,45 @@ CREATE PROCEDURE [dbo].[ptblCatMeses]
 AS
 BEGIN
      SET NOCOUNT ON;
-     /*:::::::::::::::: START CRUD [tbltblCatMeses]:::::::::::::::::::::::::*/
-     /*:::::::::::::::: CREATE ONE [tbltblCatMeses]:::::::::::::::::::::::::*/
+     /*:::::::::::::::: START CRUD [pCatMeses]:::::::::::::::::::::::::*/
+     /*:::::::::::::::: CREATE ONE [pCatMeses]:::::::::::::::::::::::::*/
      IF @cmd=1
      BEGIN
-      INSERT INTO [dbo].[tbltblCatMeses]
+      INSERT INTO [dbo].[pCatMeses]
           ([nombre])
       VALUES
           (@nombre)
       select @@identity
      END
-     /*:::::::::::::::: READ ALL [tbltblCatMeses]:::::::::::::::::::::::::*/
+     /*:::::::::::::::: READ ALL [pCatMeses]:::::::::::::::::::::::::*/
      IF @cmd=2
       BEGIN 
       SELECT [id]
           ,isnull(nombre,'') as nombre
-      FROM [dbo].[tbltblCatMeses]
+      FROM [dbo].[pCatMeses]
      END
-     /*:::::::::::::::: READ ONE [tbltblCatMeses]:::::::::::::::::::::::::*/
+     /*:::::::::::::::: READ ONE [pCatMeses]:::::::::::::::::::::::::*/
      IF @cmd=3
      BEGIN 
       SELECT [id]
           ,isnull(nombre,'') as nombre
-      FROM [dbo].[tbltblCatMeses]
+      FROM [dbo].[pCatMeses]
       where id = @id
      END
-     /*:::::::::::::::: UPDATE ONE [tbltblCatMeses]:::::::::::::::::::::::::*/
+     /*:::::::::::::::: UPDATE ONE [pCatMeses]:::::::::::::::::::::::::*/
      IF @cmd=4
      BEGIN 
-      UPDATE [dbo].[tbltblCatMeses] SET
+      UPDATE [dbo].[pCatMeses] SET
           [nombre] = @nombre
-      FROM [dbo].[tbltblCatMeses]
+      FROM [dbo].[pCatMeses]
       where id = @id
-     END     /*:::::::::::::::: DELETE ONE [tbltblCatMeses]:::::::::::::::::::::::::*/
+     END     /*:::::::::::::::: DELETE ONE [pCatMeses]:::::::::::::::::::::::::*/
      IF @cmd=5
      BEGIN 
-     delete [dbo].[tbltblCatMeses]
+     delete [dbo].[pCatMeses]
       where id = @id
      END
-/*:::::::::::::::: END CRUD [tbltblCatMeses]:::::::::::::::::::::::::*/
+/*:::::::::::::::: END CRUD [pCatMeses]:::::::::::::::::::::::::*/
 END
 
 
