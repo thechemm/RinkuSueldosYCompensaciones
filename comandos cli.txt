@@ -1,0 +1,30 @@
+ng g s cat-mes/services/cat-mes --skip-tests
+ng g I cat-mes/interfaces/cat-mes --skip-tests
+
+ng g c empleado/empleado-list  --skip-tests
+ng g c empleado/empleado-savel --skip-tests
+ng g s empleado/services/empleado --skip-tests
+ng g i empleado/interfaces/empleado 
+
+ng g c empleado-rol/empleado-rol-list  --skip-tests
+ng g c empleado-rol/empleado-rol-savel --skip-tests
+ng g s empleado-rol/services/empleado-rol --skip-tests
+ng g i empleado-rol/interfaces/empleado-rol 
+
+ng g c movimiento/movimiento-list  --skip-tests
+ng g c movimiento/movimiento-savel --skip-tests
+ng g s movimiento/services/movimiento --skip-tests
+ng g i movimiento/interfaces/movimiento --skip-tests
+
+
+ng g s porcentaje-vale/services/porcentaje-vale --skip-tests
+ng g i porcentaje-vale/interfaces/porcentaje-vale 
+
+ng g s retencion/services/retencion --skip-tests
+ng g i retencion/interfaces/retencion
+
+ng generate @angular/material:navigation navigator
+
+ng g c sueldo-mensual/sueldo-mensual-list  --skip-tests
+ng g s sueldo-mensual/interfaces/sueldo-mensual --skip-tests
+ng g i sueldo-mensual/interfaces/sueldo-filtro

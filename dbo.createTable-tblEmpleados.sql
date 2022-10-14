@@ -1,7 +1,7 @@
 use db_Rinku
---IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tblEmpleados]') AND type in (N'U'))
---DROP TABLE [dbo].[tblEmpleados]
---GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tblEmpleados]') AND type in (N'U'))
+DROP TABLE [dbo].[tblEmpleados]
+GO
 SET ANSI_NULLS ON 
 Go
 SET QUOTED_IDENTIFIER ON

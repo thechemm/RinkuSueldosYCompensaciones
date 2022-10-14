@@ -1,6 +1,7 @@
---IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tblEmpleadosRoles]') AND type in (N'U'))
---DROP TABLE [dbo].[tblEmpleadosRoles]
---GO
+use db_Rinku
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tblEmpleadosRoles]') AND type in (N'U'))
+DROP TABLE [dbo].[tblEmpleadosRoles]
+GO
 SET ANSI_NULLS ON 
 Go
 SET QUOTED_IDENTIFIER ON
@@ -18,5 +19,13 @@ CONSTRAINT [PK_tblEmpleadosRoles] PRIMARY KEY CLUSTERED (
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+INSERT INTO tblEmpleadosRoles(nombre,sueldoBase,horasJornada,diasPorSemana,montoAdicionalPorEntrega,montoBonoPorHora)
+VALUES('Chofer',30,8,6,5,10)
+
+INSERT INTO tblEmpleadosRoles(nombre,sueldoBase,horasJornada,diasPorSemana,montoAdicionalPorEntrega,montoBonoPorHora)
+VALUES('Cargador',30,8,6,5,5)
+
+INSERT INTO tblEmpleadosRoles(nombre,sueldoBase,horasJornada,diasPorSemana,montoAdicionalPorEntrega,montoBonoPorHora)
+VALUES('Auxiliar',30,8,6,5,0)
 
 

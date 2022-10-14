@@ -1,3 +1,4 @@
+use db_Rinku
 SET ANSI_NULLS ON 
 Go
 SET QUOTED_IDENTIFIER ON
@@ -10,45 +11,45 @@ CREATE PROCEDURE [dbo].[pPorcentajeVales]
 AS
 BEGIN
      SET NOCOUNT ON;
-     /*:::::::::::::::: START CRUD [pPorcentajeVales]:::::::::::::::::::::::::*/
-     /*:::::::::::::::: CREATE ONE [pPorcentajeVales]:::::::::::::::::::::::::*/
+     /*:::::::::::::::: START CRUD [tblPorcentajeVales]:::::::::::::::::::::::::*/
+     /*:::::::::::::::: CREATE ONE [tblPorcentajeVales]:::::::::::::::::::::::::*/
      IF @cmd=1
      BEGIN
-      INSERT INTO [dbo].[pPorcentajeVales]
+      INSERT INTO [dbo].[tblPorcentajeVales]
           ([porcentaje])
       VALUES
           (@porcentaje)
       select @@identity
      END
-     /*:::::::::::::::: READ ALL [pPorcentajeVales]:::::::::::::::::::::::::*/
+     /*:::::::::::::::: READ ALL [tblPorcentajeVales]:::::::::::::::::::::::::*/
      IF @cmd=2
       BEGIN 
       SELECT [id]
           ,isnull(porcentaje,'') as porcentaje
-      FROM [dbo].[pPorcentajeVales]
+      FROM [dbo].[tblPorcentajeVales]
      END
-     /*:::::::::::::::: READ ONE [pPorcentajeVales]:::::::::::::::::::::::::*/
+     /*:::::::::::::::: READ ONE [tblPorcentajeVales]:::::::::::::::::::::::::*/
      IF @cmd=3
      BEGIN 
       SELECT [id]
           ,isnull(porcentaje,'') as porcentaje
-      FROM [dbo].[pPorcentajeVales]
+      FROM [dbo].[tblPorcentajeVales]
       where id = @id
      END
-     /*:::::::::::::::: UPDATE ONE [pPorcentajeVales]:::::::::::::::::::::::::*/
+     /*:::::::::::::::: UPDATE ONE [tblPorcentajeVales]:::::::::::::::::::::::::*/
      IF @cmd=4
      BEGIN 
-      UPDATE [dbo].[pPorcentajeVales] SET
+      UPDATE [dbo].[tblPorcentajeVales] SET
            [porcentaje] = @porcentaje
-      FROM [dbo].[pPorcentajeVales]
+      FROM [dbo].[tblPorcentajeVales]
       where id = @id
-     END     /*:::::::::::::::: DELETE ONE [pPorcentajeVales]:::::::::::::::::::::::::*/
+     END     /*:::::::::::::::: DELETE ONE [tblPorcentajeVales]:::::::::::::::::::::::::*/
      IF @cmd=5
      BEGIN 
-      delete [dbo].[pPorcentajeVales]
+      delete [dbo].[tblPorcentajeVales]
       where id = @id
      END
-/*:::::::::::::::: END CRUD [pPorcentajeVales]:::::::::::::::::::::::::*/
+/*:::::::::::::::: END CRUD [tblPorcentajeVales]:::::::::::::::::::::::::*/
 END
 
 

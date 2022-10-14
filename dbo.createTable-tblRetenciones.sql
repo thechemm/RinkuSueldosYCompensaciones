@@ -1,6 +1,7 @@
---IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tblRetenciones]') AND type in (N'U'))
---DROP TABLE [dbo].[tblRetenciones]
---GO
+use db_Rinku
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tblRetenciones]') AND type in (N'U'))
+DROP TABLE [dbo].[tblRetenciones]
+GO
 SET ANSI_NULLS ON 
 Go
 SET QUOTED_IDENTIFIER ON
@@ -15,5 +16,11 @@ CONSTRAINT [PK_tblRetenciones] PRIMARY KEY CLUSTERED (
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
+INSERT INTO tblRetenciones (porcentaje,montoMinimo,montoMaximo)
+VALUES (9,null,null)
+
+INSERT INTO tblRetenciones(porcentaje,montoMinimo,montoMaximo)
+VALUES(3,10000,null)
 
 

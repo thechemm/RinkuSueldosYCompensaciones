@@ -1,6 +1,7 @@
---IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tbltblPorcentajeVales]') AND type in (N'U'))
---DROP TABLE [dbo].[tbltblPorcentajeVales]
---GO
+use db_Rinku
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tblPorcentajeVales]') AND type in (N'U'))
+DROP TABLE [dbo].[tblPorcentajeVales]
+GO
 SET ANSI_NULLS ON 
 Go
 SET QUOTED_IDENTIFIER ON
@@ -13,5 +14,8 @@ CONSTRAINT [PK_tbltblPorcentajeVales] PRIMARY KEY CLUSTERED (
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
+INSERT INTO tblPorcentajeVales(porcentaje)
+VALUES(4)
 
 

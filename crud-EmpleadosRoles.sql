@@ -1,3 +1,4 @@
+use db_Rinku
 SET ANSI_NULLS ON 
 Go
 SET QUOTED_IDENTIFIER ON
@@ -79,6 +80,8 @@ BEGIN
       where id = @id
      END
 /*:::::::::::::::: END CRUD [tblEmpleadosRoles]:::::::::::::::::::::::::*/
+
+
 END
 
 

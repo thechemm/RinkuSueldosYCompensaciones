@@ -3,7 +3,7 @@ SET ANSI_NULLS ON
 Go
 SET QUOTED_IDENTIFIER ON
 GO
-create PROCEDURE [dbo].[pEmpleados]
+alter PROCEDURE [dbo].[pEmpleados]
 -- Add the parameters for the stored procedure here
      @cmd int = 0,
      @id int = 0,
